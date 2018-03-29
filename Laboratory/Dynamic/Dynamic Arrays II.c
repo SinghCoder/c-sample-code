@@ -22,77 +22,6 @@ int **generate(int rows, int columns)
 }
 
 
-void **resize(int **arr, int old_rows, int old_columns, int new_rows, int new_columns)
-{
-	int i;
-
-	if(!(new_rows > 0 && new_columns > 0))
-	{
-		printf("error.");
-		exit(0);
-	}
-
-	else if(new_rows < old_rows)
-	{
-		printf("Contracting...\n");
-
-		// first clear delete/free all extra rows
-		for(i=new_rows;i<old_rows;++i)
-		{
-			free(*(arr+i));
-		}
-
-		// now resize the array (shell i.e. **arr)
-		arr = (int **)malloc(sizeof(int)*new_rows);
-
-		// then resize all of the rows remaining
-		if(new_columns != old_columns)
-		{
-			for(i=0;i<old_rows;++i)
-			{
-				*(arr + i) = (int *)realloc(*(arr + i), sizeof(int)*new_columns);
-			}
-		}
-	}
-
-	else if(new_rows > old_rows)
-	{
-		printf("Expanding...\n");
-
-		// first resize all existing rows
-		if(new_columns != old_columns)
-		{
-			for(i=0;i<old_rows;++i)
-			{
-				*(arr + i) = (int *)realloc(*(arr + i), sizeof(int)*new_columns);
-			}
-		}
-
-		// now resize array (the "shell")
-		arr = (int **)realloc(arr, sizeof(int)*new_rows);
-			
-
-		// generate new rows
-		printf("generating new rows.\n");	
-		for (i=old_rows; i<new_rows; ++i)
-		{
-			*(arr + i) = (int *)malloc(sizeof(int)*new_columns);
-		}
-	}
-	
-	else
-	{
-		if(new_columns != old_columns)
-		{
-			for(i=0; i<new_rows; ++i)	// or old_rows, same thing now in this case
-			{
-				*(arr + i) = (int *)realloc(*(arr + i), sizeof(int)*new_columns);
-			}
-		}
-	}
-}
-
-
 void safeDelete(int **arr, int rows)
 {
 	/* the right, and safe and right way to free up memory of a 2D array is to free each "subarray" i.e. shell[i], then the "shell" */
@@ -105,7 +34,14 @@ void safeDelete(int **arr, int rows)
 	free(arr);
 }
 
-// other ideas: deleting specific rows and columns or inserting them... which would be more useful I suppose
+void appendRow(**array, int rows, int columns, int rowexp)
+{
+	array = (int **)realloc(sizeof(int *)*((rows+rowexp)*columns));
+}
+
+void deleteRow()
+{
+}
 
 /*--------------------------------------------------Different Filling Functions-----------------------------------------------------------*/
 
@@ -197,15 +133,7 @@ int main()
 	fill(my_arr, m, n);
 	printArr(my_arr, m, n);
 
-	printf("\nNow, we'll resize this array.\n");
-	printf("enter new no. of rows: ");
-	scanf("%d", &a);
-	printf("enter new no. of columns: ");
-	scanf("%d", &b);
-	resize(my_arr, m , n, a, b);
-	fillExpansion(my_arr, m , n, a, b);	
-	printArr(my_arr, a, b);
-	safeDelete(my_arr, a);
+	safeDelete(my_arr, m);
 
 	return 0;
 }

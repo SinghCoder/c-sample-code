@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-/*-----------------------------------------------Generate, Resize, and Safely Delete------------------------------------------------------*/
 
 int **generate(int rows, int columns)
 {
@@ -34,16 +33,6 @@ void safeDelete(int **arr, int rows)
 	free(arr);
 }
 
-void appendRow(**array, int rows, int columns, int rowexp)
-{
-	array = (int **)realloc(sizeof(int *)*((rows+rowexp)*columns));
-}
-
-void deleteRow()
-{
-}
-
-/*--------------------------------------------------Different Filling Functions-----------------------------------------------------------*/
 
 void fill(int **arr, int rows, int columns)
 { 
@@ -61,47 +50,6 @@ void fill(int **arr, int rows, int columns)
 	}
 }
 
-void fillExpansion(int **arr, int old_rows, int old_cols, int new_rows, int new_cols)
-{
-	int i,j;
-	if(new_cols > old_cols)
-	{
-		for(i=0; i<new_rows; ++i)
-		{
-			for(j=old_cols; j<new_cols; ++j)
-			{
-				printf("Enter a value for row %d and columns %d: ", i, j);
-				scanf("%d", (*(arr + i) + j));
-			}
-		}
-	}
-	if(new_rows > old_rows)
-	{
-		for(j=0; j<new_cols; ++j)
-			{
-				for(i=old_rows; i<new_rows; ++i)
-				{
-					printf("Enter a value for row %d and columns %d: ", i, j);
-					scanf("%d", (*(arr + i) + j));
-				}
-			}
-	}
-	if( (old_rows > new_rows) && (new_cols > old_cols) )
-	{
-		for(i=old_rows; i<new_cols; ++i)
-		{
-			for(j=old_cols; j<new_cols; ++j)
-			{
-				printf("Enter a value for row %d and columns %d: ", i, j);
-				scanf("%d", (*(arr + i) + j));
-			}
-		}
-	}
-	if( (old_rows < new_rows) && (new_cols < old_cols) )
-		printf("The array shrunk in both it's rows and columns so no need to fill anything.\n");
-}
-
-/*------------------------------------------------------Printing Functions----------------------------------------------------------------*/
 
 void printArr(int **arr, int rows, int columns)
 {
@@ -118,7 +66,6 @@ void printArr(int **arr, int rows, int columns)
 	}
 }
 
-/*---------------------------------------------------------Main Function------------------------------------------------------------------*/
 
 int main()
 {

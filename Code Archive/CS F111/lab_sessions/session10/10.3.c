@@ -3,7 +3,7 @@
 #include <stdlib.h>
 
 
-char *raw_input()
+char *raw_input()		// THIS FUNCTION IS BUGGY!!! PLEASE DON'T USE IT ANYWHERE!!!
 {
 	char ch= '\0';
 	int counter=0;
@@ -24,6 +24,7 @@ char *raw_input()
 	}
 	char *str = (char *)malloc(sizeof(char)*(strlen(buffer)+1));
 	strcpy(str, buffer);
+	fseek(stdin, 0, SEEK_END);
 	return str;
 }
 

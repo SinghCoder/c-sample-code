@@ -3,13 +3,12 @@
 #include <stdlib.h>
 
 // ideally these would go in a seperate header file or something...
-struct error{
+typedef struct {
 	int code;
 	char *message;
-};
+} ERROR;
 
-struct error err_001 = {001, "You must enter an integer value!\n"};
-
+ERROR err_001 = {001, "You must enter an integer value!\n"};
 
 
 void print(char *str){
@@ -23,9 +22,11 @@ void print(char *str){
 
 int integer(char *arr){
 	int i, x, status;
+	ERROR *err_001p;
 	status = sscanf(arr ,"%d", &x);
 	if(status==0){
-		printf("%s",err_001.message);
+		printf("%s\n", err_001.message);
+		printf("%s\n", err_001p->message);
 		exit(1);	// self-raised runtime error
 	}
 	else

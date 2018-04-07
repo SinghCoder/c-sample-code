@@ -125,4 +125,4 @@ TRACKING AND MODIFYING VARIABLES
 MISCELLANEOUS
 
 	(gdb) where
-	after encountering an error, get the details of where.
+	after encountering an error, get the details of where.	

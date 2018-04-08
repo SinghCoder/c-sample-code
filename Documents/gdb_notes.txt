@@ -126,3 +126,11 @@ MISCELLANEOUS
 
 	(gdb) where
 	after encountering an error, get the details of where.	
+
+	(gdb) info line
+	prints some info about the current line you're in
+
+	(gdb) backtrace
+	or
+	(gdb) bt
+	backtrace as the name suggests

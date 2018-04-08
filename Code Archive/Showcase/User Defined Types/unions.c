@@ -43,7 +43,7 @@ int main()
 	printf("Why it happens this way: Unix based systems follow \"Little Endian\" formats for storing values in memory.\n");
 	printf("what this means is that the LSB will get stored in the lowest memory address (usually shown as leftmost end),\n"); 
 	printf("and MSB in the highest memory address (ususally shown as rightmost end).\n");
-	printf("and the MSB is overwritten first (I suppose always?).\n");
+	printf("and the lowest memory address/LSB is overwritten first in Little Endian.\n");
 	return 0;
 }
 

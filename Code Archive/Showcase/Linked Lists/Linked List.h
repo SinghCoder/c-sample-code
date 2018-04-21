@@ -8,7 +8,7 @@ typedef struct node {
 	struct node *next;
 } NODE;
 
-NODE *HEAD;
+NODE *HEAD=NULL;	// ALways set the head to NULL initially!!!
 
 
 

@@ -93,10 +93,9 @@ STUDENT *addSortOrder(STUDENT *head, char *name)
 			exists = 1;
 			break;
 		}
-		else if(strcmp(cursor->name, name) < 0)
+		else if(strcmp(cursor->name, name) > 0)
 		{			
-			printf("1");
-			cursor = Insert(prev, cursor, name);		
+			printf("1");		
 			break;
 		}
 		else if(cursor->next == NULL)
@@ -113,7 +112,9 @@ STUDENT *addSortOrder(STUDENT *head, char *name)
 		cursor->count += 1;
 	else
 	{
-		
+		cursor = Insert(prev, cursor, name);
+		if(prev == NULL)
+			head = cursor;
 		cursor->count += 1;
 	}
 	return head;

@@ -44,9 +44,7 @@ STUDENT *addName(STUDENT *head, char *name)
 	FLAG exists=0;
 
 	if(head==NULL)
-	{
 		head = prepend(head, name);
-	}
 
 	STUDENT *cursor = head;
 
@@ -79,9 +77,7 @@ STUDENT *addSortOrder(STUDENT *head, char *name)
 	FLAG exists=0;
 
 	if(head==NULL)
-	{
 		head = prepend(head, name);
-	}
 
 	STUDENT *cursor = head, *prev = NULL;
 
@@ -89,18 +85,13 @@ STUDENT *addSortOrder(STUDENT *head, char *name)
 	{
 		if(!strcmp(cursor->name, name))
 		{
-			printf("0");
 			exists = 1;
 			break;
 		}
-		else if(strcmp(cursor->name, name) > 0)
-		{			
-			printf("1");		
+		else if(strcmp(cursor->name, name) > 0)			
 			break;
-		}
 		else if(cursor->next == NULL)
 		{
-			printf("2");
 			append(cursor, name);
 			break;
 		}

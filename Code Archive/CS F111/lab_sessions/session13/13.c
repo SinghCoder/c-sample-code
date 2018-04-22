@@ -20,7 +20,7 @@ STUDENT *append(STUDENT *old_tail, char *name)
 	return new_tail; 
 }
 
-STUDENT *alphaInsert(STUDENT *before, STUDENT *after, char *name)
+STUDENT *Insert(STUDENT *before, STUDENT *after, char *name)
 {
 	/* the head must exist, can't be an empty linked list */
 	STUDENT *new_node;
@@ -89,16 +89,22 @@ STUDENT *addSortOrder(STUDENT *head, char *name)
 	{
 		if(!strcmp(cursor->name, name))
 		{
+			printf("0");
 			exists = 1;
+			break;
+		}
+		else if(strcmp(cursor->name, name) < 0)
+		{			
+			printf("1");
+			cursor = Insert(prev, cursor, name);		
 			break;
 		}
 		else if(cursor->next == NULL)
 		{
+			printf("2");
 			append(cursor, name);
 			break;
 		}
-		else if(strcmp(cursor->name, name) > 0)
-			break;
 		prev = cursor;
 		cursor = cursor->next;
 	}
@@ -107,7 +113,7 @@ STUDENT *addSortOrder(STUDENT *head, char *name)
 		cursor->count += 1;
 	else
 	{
-		cursor = alphaInsert(prev, cursor, name);
+		
 		cursor->count += 1;
 	}
 	return head;
@@ -243,7 +249,7 @@ int main()
 	scanf("%d", &N);
 	head = generateLinkedList(head, N, 1);
 
-	/*
+	
 	abundent = findMostFrequent(head);
 	printf("the most abundent name is: %s with %d occurances.\n", abundent->name, abundent->count);
 
@@ -252,8 +258,7 @@ int main()
 	printf("reduced %s by 1\n", abundent->name);
 	abundent = findMostFrequent(head);
 	printf("the most abundent name is: %s with %d occurances.\n", abundent->name, abundent->count);
-	*/
-
+	
 	generateUnique(head);
 	purgeLinkedList(head);
 }

@@ -206,6 +206,7 @@ STUDENT *deleteSingle(STUDENT *head, char *name)
 		prev = cursor;
 		cursor = cursor->next;
 	}
+	
 	if(exists)
 	{
 		if(cursor->count <= 1)

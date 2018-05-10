@@ -1,3 +1,5 @@
+/* Note: the standard library functions: atoi and atof could just as easily handle the string conversion demonstrated here, */
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -49,7 +51,7 @@ int main()
 	for(i=0; i<3; ++i){
 		printf("convert a string to an integer: ");
 		scanf("%s", str);
-		printf("%d\n", integer(str));
+		printf("%d\n", integer(str));		// integer() is equivalent to atoi() from stdlib.h
 	}
 
 	return 0;

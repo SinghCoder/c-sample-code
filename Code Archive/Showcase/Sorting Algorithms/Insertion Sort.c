@@ -37,8 +37,10 @@ void insertionSort(int *array, int len)
 		for(j=i-1; j>=0; --j)
 		{
 			if(array[c]<array[j])
+			{
 				swap(&array[c], &array[j]);
 				c = j;
+			}		
 		}
 	}
 }

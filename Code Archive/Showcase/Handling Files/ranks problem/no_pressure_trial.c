@@ -137,7 +137,7 @@ void getSingle(STUD *a, FILE *fp)
 		char idno[16];
 		char compre[10];
 		
-    // first parse the idno.
+    	// first parse the idno.
 		for(c=0;c<12;++c)
 		{		
 			idno[c] = fgetc(fp);

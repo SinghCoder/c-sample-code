@@ -1,12 +1,15 @@
 #include <stdio.h>
-#include "MyBitFunctions.h"
+#include "MyBitFunctionsInt.h"
 
 int main()
 {
 	COUNTER i;
 	char space = ' '; 
-	unsigned char hex_num = 0x3D, result;
-	
+	int hex_num, result;
+
+	printf("Enter the number: ");
+	scanf("%d", &hex_num);
+
 	printf("Original Binary: %20c", space);
 	showBits(hex_num, 1);
 	printf("  %X", hex_num);

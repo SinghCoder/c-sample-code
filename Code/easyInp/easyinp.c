@@ -13,12 +13,11 @@ char *raw_input(char *message, size_t max_len){
     /* clear any excess entered characters */
     char ch;
     int received_len = strlen(input);
-    if( received_len > 0 && input[received_len-1] != '\n') // excess exists
+    if( input[received_len-1] != '\n' ) // excess exists
         while((ch = getchar()) != '\n');
-    else{ // replace the terminal '\n' with a '\0'
-        input[received_len-1] = '\0';
-        input = realloc(input, sizeof(char)*(received_len));
-    }
+    
+	input[received_len-1] = '\0';
+    input = realloc(input, sizeof(char)*(received_len));
 
     return input;
     

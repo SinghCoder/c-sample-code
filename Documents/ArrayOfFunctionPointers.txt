@@ -1,0 +1,44 @@
+from: https://stackoverflow.com/questions/5488608/how-define-an-array-of-function-pointers-in-c
+
+A great answer on array of function pointers.
+
+The type of a function pointer is just like the function declaration, but with "(*)" in place of the function name. So a pointer to:
+
+int foo( int )
+
+would be:
+
+int (*)( int )
+
+In order to name an instance of this type, put the name inside (*), after the star, so:
+
+int (*foo_ptr)( int )
+
+declares a variable called foo_ptr that points to a function of this type.
+
+Arrays follow the normal C syntax of putting the brackets near the variable's identifier, so:
+
+int (*foo_ptr_array[2])( int )
+
+declares a variable called foo_ptr_array which is an array of 2 function pointers.
+
+The syntax can get pretty messy, so it's often easier to make a typedef to the function pointer and then declare an array of those instead:
+
+typedef int (*foo_ptr_t)( int );
+foo_ptr_t foo_ptr_array[2];
+
+In either sample you can do things like:
+
+int f1( int );
+int f2( int );
+foo_ptr_array[0] = f1;
+foo_ptr_array[1] = f2;
+foo_ptr_array[0]( 1 );
+
+Finally, you can dynamically allocate an array with either of:
+
+int (**a1)( int ) = calloc( 2, sizeof( int (*)( int ) ) );
+foo_ptr_t * a2 = calloc( 2, sizeof( foo_ptr_t ) );
+
+Notice the extra * in the first line to declare a1 as a pointer to the function pointer.
+
